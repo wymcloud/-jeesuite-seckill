@@ -25,6 +25,8 @@
 
 访问地址如：[http://localhost:8080/seckil/list](http://localhost:8080/seckil/list) (加上你自己的contextpath)
 
+涉及的技术栈请搜索jeesuite-lib开源项目。
+
 下一步将前后端分离，有兴趣的联系我。
 
 QQ:793717561
