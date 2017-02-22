@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                            http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+                            http://code.alibabatech.com/schema/dubbo http://7xq7jj.com1.z0.glb.clouddn.com/dubbo.xsd">
+
+
+	<bean class="com.jeesuite.confcenter.spring.CCPropertyPlaceholderConfigurer">
+		<property name="remoteEnabled" value="false" />
+		<!-- 本地配置文件 -->
+		<property name="locations">
+			<list>
+				<value>classpath:local_config/redis.properties</value>
+				<value>classpath:local_config/kafka.properties</value>
+				<value>classpath:local_config/mysql.properties</value>
+				<value>classpath:local_config/task.properties</value>
+				<value>classpath:local_config/dubbo.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<context:component-scan base-package="com.jeesuite.seckill.web" />
+	<!-- dubbo基本配置 -->
+	<dubbo:application name="seckill-consumer" />
+	<dubbo:registry protocol="${registry.protocol}" address="${registry.url}" check="false"></dubbo:registry>
+	<dubbo:protocol name="dubbo" threads="${dubbo.threads}" />
+
+	<dubbo:reference id="userService" interface="com.jeesuite.seckill.api.IUserService" check="false" retries="0" timeout="10000"/>
+	<dubbo:reference id="seckillService" interface="com.jeesuite.seckill.api.SeckillService" check="false" retries="0" timeout="10000"/>
+
+</beans>

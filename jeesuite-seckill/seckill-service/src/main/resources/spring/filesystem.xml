@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                            http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+	<bean id="qiniuFSProvider" class="com.jeesuite.filesystem.spring.FSProviderSpringFacade">
+        <property name="provider" value="qiniu" />
+        <property name="groupName" value="jeesuite" />
+        <property name="accessKey" value="iqq3aa-ncqfdGGubCcS-N8EUV-qale2ezndnrtKS" />
+        <property name="secretKey" value="1RmdaMVjrjXkyRVPOmyMa6BzcdG5VDdF-SH_HUTe" />
+        <property name="urlprefix" value="http://ojmezn0eq.bkt.clouddn.com" />
+    </bean>
+    
+    <!-- <bean id="fastDfsFSProvider" class="com.jeesuite.filesystem.spring.FSProviderSpringFacade">
+        <property name="provider" value="fastDFS" />
+        <property name="groupName" value="group1" />
+        <property name="servers" value="120.24.185.19:22122" />
+        <property name="urlprefix" value="http://120.24.185.19:81" />
+    </bean> -->
+	
+</beans>

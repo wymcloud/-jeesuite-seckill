@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                            http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	
+    <bean id="routeDataSource" class="com.jeesuite.mybatis.datasource.MutiRouteDataSource" />
+
+	<bean id="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="isolationLevelName" value="ISOLATION_DEFAULT" />
+		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRED" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="routeDataSource" />
+	</bean>
+
+	<bean id="routeSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-configuration.xml" />
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+		<property name="dataSource" ref="routeDataSource" />
+		<property name="typeAliasesPackage" value="com.jeesuite.seckill.dao.entity" />
+		<!--<property name="plugins">
+            <array>
+                <bean class="com.jeesuite.mybatis.plugin.JeesuiteMybatisPluginContext">
+					<property name="crudDriver" value="mapper3" />
+				    <property name="mapperLocations" value="classpath:mapper/*Mapper.xml" />
+				    <property name="interceptorHandlers" value="cache,rwRoute" />
+				</bean> 
+            </array>
+        </property>-->
+	</bean>
+
+	<!--配置扫描Dao接口包,动态实现DAO接口,注入到spring容器-->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--注入routeSqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="routeSqlSessionFactory" />
+		<!-- 给出需要扫描的Dao接口-->
+		<property name="basePackage" value="com.jeesuite.seckill.dao.mapper" />
+    </bean>
+
+</beans>

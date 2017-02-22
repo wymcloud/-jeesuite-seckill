@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jeesuite.seckill</groupId>
+  <artifactId>seckill-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>seckill-api</module>
+  	<module>seckill-dao</module>
+  	<module>seckill-service</module>
+  	<module>seckill-app</module>
+  	<module>seckill-web</module>
+  </modules>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<compiler.jdk.version>1.8</compiler.jdk.version>
+		<output.encoding>utf-8</output.encoding>
+		<spring.version>4.1.7.RELEASE</spring.version>
+		<kafka.version>0.10.1.1</kafka.version>
+		<zkclient.version>0.7</zkclient.version>
+		<zookeeper.version>3.3.6</zookeeper.version>
+		<jedis.version>2.8.0</jedis.version>
+		<mybatis.version>3.3.0</mybatis.version>
+		<mapper.version>3.3.4</mapper.version>
+		<druid.version>1.0.16</druid.version>
+		<junit.version>4.12</junit.version>
+		
+		<jeesuite.common.version>1.0.2</jeesuite.common.version>
+		<jeesuite.kafka.version>1.0.2</jeesuite.kafka.version>
+		<jeesuite.sch.version>1.0.7</jeesuite.sch.version>
+		<jeesuite.cache.version>1.0.2</jeesuite.cache.version>
+		<jeesuite.mybatis.version>1.0.5</jeesuite.mybatis.version>
+		<jeesuite.filesystem.version>1.0.0</jeesuite.filesystem.version>
+		<jeesuite.rest.version>1.0.1-SNAPSHOT</jeesuite.rest.version>
+		<jeesuite.confcenter.version>1.0.0</jeesuite.confcenter.version>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${compiler.jdk.version}</source>
+					<target>${compiler.jdk.version}</target>
+					<encoding>${output.encoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

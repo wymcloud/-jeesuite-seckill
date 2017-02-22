@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jeesuite.seckill.dao.mapper.UserEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.jeesuite.seckill.dao.entity.UserEntity" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="findByType" parameterType="int" resultMap="BaseResultMap">
+      SELECT * FROM users WHERE type = #{type}
+  </select>
+
+  <select id="findIdsByType" parameterType="int" resultType="int">
+      SELECT id FROM users WHERE type = #{type}
+  </select>
+
+  <update id="updateType" parameterType="map">
+     update users set type = #{type} where id in
+     <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+			#{id}
+	 </foreach>
+  </update>
+
+</mapper>
