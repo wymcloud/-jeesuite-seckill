@@ -24,3 +24,5 @@
 #### 部署web模块到服务器启动，部署'seckill-web`下war包即可。
 
 访问地址如：[http://localhost:8080/seckil/list](http://localhost:8080/seckil/list) (加上你自己的contextpath)
+
+QQ:793717561
